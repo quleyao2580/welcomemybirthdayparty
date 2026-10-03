@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生日派对邀请函</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* 多巴胺波点背景 */
+    .polka-bg {
+      background-image: radial-gradient(#ff7eb9 10%, transparent 11%),
+        radial-gradient(#7bdff2 10%, transparent 11%);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+      background-color: #fffbeb;
+    }
+    /* 照片旋转动画 */
+    @keyframes rotate-float {
+      0% { transform: rotate(-4deg); }
+      50% { transform: rotate(4deg); }
+      100% { transform: rotate(-4deg); }
+    }
+    .photo-rotate {
+      animation: rotate-float 3s ease-in-out infinite;
+    }
+    /* 页面动画 */
+    .page {
+      display: none;
+      animation: fadeIn 0.4s ease-out;
+    }
+    .page.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    /* 可爱按钮动画 */
+    .btn-bounce:active {
+      transform: scale(0.96);
+    }
+  </style>
+</head>
+<body class="polka-bg min-h-screen overflow-hidden">
+  <div class="relative w-full min-h-screen flex flex-col justify-between p-6">
+    <!-- 返回按钮 -->
+    <button id="backBtn" class="absolute top-6 left-6 z-50 bg-white/80 rounded-full px-4 py-2 font-bold text-pink-500 shadow-md hidden">
+      ← 返回
+    </button>
+
+    <!-- Page1 欢迎首页 -->
+    <div id="page1" class="page active flex-col items-center justify-center gap-6">
+      <h1 class="text-[clamp(2rem,8vw,3rem)] font-black text-pink-600 text-center">
+        🎂 生日派对邀请 🥳
+      </h1>
+      <!-- 替换src为你的照片链接 -->
+      <img
+        src="https://picsum.photos/id/237/300/300"
+        alt="个人照片"
+        class="photo-rotate w-64 h-64 object-cover rounded-3xl shadow-xl border-4 border-white"
+      >
+      <p class="text-lg text-fuchsia-700 font-medium text-center">
+        很高兴邀请你来参加我的生日聚会✨
+      </p>
+      <div class="mt-8 w-full">
+        <button class="btn-bounce w-full bg-gradient-to-r from-pink-400 to-orange-300 text-white py-4 rounded-2xl text-xl font-bold shadow-lg" onclick="nextPage()">
+          确认，继续查看 →
+        </button>
+      </div>
+    </div>
+
+    <!-- Page2 时间地点页 -->
+    <div id="page2" class="page flex-col items-center justify-center gap-6">
+      <h2 class="text-[clamp(1.6rem,6vw,2.2rem)] font-black text-violet-600 text-center">
+        📍 聚会信息
+      </h2>
+      <div class="bg-white/90 rounded-3xl p-6 shadow-lg w-full">
+        <p class="text-lg text-gray-700 my-3">📅 日期：2026年11月11日</p>
+        <p class="text-lg text-gray-700 my-3">⏰ 时间：下午14:00 开始</p>
+        <p class="text-lg text-gray-700 my-3">🏠 地点：XX市XX区XX路XX号</p>
+      </div>
+      <div class="mt-8 w-full">
+        <button class="btn-bounce w-full bg-gradient-to-r from-cyan-400 to-teal-300 text-white py-4 rounded-2xl text-xl font-bold shadow-lg" onclick="nextPage()">
+          确认，下一步 →
+        </button>
+      </div>
+    </div>
+
+    <!-- Page3 是否参加 -->
+    <div id="page3" class="page flex-col items-center justify-center gap-6">
+      <h2 class="text-[clamp(1.6rem,6vw,2.2rem)] font-black text-rose-600 text-center">
+        🎉 你可以来吗？
+      </h2>
+      <div class="w-full flex flex-col gap-4">
+        <button class="btn-bounce bg-gradient-to-r from-green-400 to-emerald-300 text-white py-4 rounded-2xl text-xl font-bold shadow-lg" onclick="selectJoin()">✅ 我会参加！</button>
+        <button class="btn-bounce bg-gradient-to-r from-gray-400 to-slate-300 text-white py-4 rounded-2xl text-xl font-bold shadow-lg" onclick="selectNoJoin()">❌ 很遗憾无法到场</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const totalPage = 3;
+    let currentPage = 1;
+    const backBtn = document.getElementById('backBtn');
+
+    function renderPage() {
+      // 隐藏所有页面
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      // 显示当前页
+      document.getElementById(`page${currentPage}`).classList.add('active');
+      // 返回按钮：第1页隐藏，其余显示
+      if(currentPage === 1) {
+        backBtn.classList.add('hidden');
+      } else {
+        backBtn.classList.remove('hidden');
+      }
+    }
+
+    function nextPage() {
+      if(currentPage < totalPage) {
+        currentPage++;
+        renderPage();
+      }
+    }
+    function prevPage() {
+      if(currentPage > 1) {
+        currentPage--;
+        renderPage();
+      }
+    }
+    // 参加：跳后面表单；不参加：跳结束页（demo里alert示意）
+    function selectJoin() {
+      alert("🎉 太棒啦！接下来会进入主题选择页面（正式版添加）");
+    }
+    function selectNoJoin() {
+      alert("🥺 收到你的回复，期待下次见面！（正式版直接跳转结束感谢页）");
+    }
+    backBtn.onclick = prevPage;
+  </script>
+</body>
+</html>
