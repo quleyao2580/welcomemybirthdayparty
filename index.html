@@ -111,7 +111,7 @@
 
     /* 主按钮 */
     .btn-primary {
-      margin-top: 30px;
+      margin-top: 20px;
       width: min(320px, 86%);
       background: linear-gradient(135deg, #57d9a3, #4fb8ff, #ff5c8a);
       color: white;
@@ -139,6 +139,12 @@
       z-index: 10;
       border: 3px solid #bde4ff;
     }
+    /* P5滚动卡片容器 */
+    .scroll-card-inner{
+      max-height: 420px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
     .info-card h2 {
       font-size: 1.6rem;
       color: #2f80ed;
@@ -158,6 +164,22 @@
       border-radius:16px;
       margin:14px 0;
       color:#2068aa;
+    }
+    .color-green{
+      color:#36bc86;
+      font-weight:bold;
+    }
+    .color-blue{
+      color:#2f80ed;
+      font-weight:bold;
+    }
+    .color-yellow{
+      color:#d8b000;
+      font-weight:bold;
+    }
+    .color-red{
+      color:#e64848;
+      font-weight:bold;
     }
 
     /* 选择按钮组 */
@@ -195,7 +217,7 @@
     /* 表单输入样式 */
     .form-item{
       text-align:left;
-      margin:12px 0;
+      margin:16px 0;
     }
     input[type="text"],textarea{
       width:100%;
@@ -255,9 +277,9 @@
   <section class="page" id="page2">
     <div class="info-card">
       <p>诚邀您参加我的24大寿party！</p>
-      <p>party地点：深圳市南山区崇文花园13栋2518</p>
+      <p>party地点：深圳市南山区崇文花园\n13栋2518</p>
       <p>（深大丽湖地铁站c口步行5分钟）</p>
-      <p>party时间：2026年10月17日邀您共度12点~~</p>
+      <p>party时间：2026年10月17日\n邀您共度12点~~</p>
     </div>
     <button class="btn-primary" onclick="nextPage()">确认，下一步 →</button>
   </section>
@@ -266,7 +288,7 @@
   <section class="page" id="page3">
     <div class="choice-buttons">
       <button class="choice-btn green-blue" onclick="selectJoinType('come')">✅ 【！必须到场！】</button>
-      <button class="choice-btn blue-purple" onclick="selectJoinType('maybe')">？ 【我再考虑下嘛（可以围观后续的选择题）】</button>
+      <button class="choice-btn blue-purple" onclick="selectJoinType('maybe')">？ 【我再考虑下嘛\n（可以围观后续的选择题）】</button>
       <button class="choice-btn pink-yellow" onclick="selectJoinType('no')">❌ 【555很可惜已经有安排了~】</button>
     </div>
   </section>
@@ -280,7 +302,7 @@
           <input type="radio" name="theme" value="A. cos任何你喜欢的角色主题"> A. cos任何你喜欢的角色主题
         </label>
         <label class="checkbox-row">
-          <input type="radio" name="theme" value="B. 模仿曲乐瑶主题（必须有参考文献出处）"> B. 模仿曲乐瑶主题（必须有参考文献出处）
+          <input type="radio" name="theme" value="B. 模仿曲乐瑶主题（必须有参考文献出处）"> B. 模仿曲乐瑶主题\n（必须有参考文献出处）
         </label>
         <label class="checkbox-row">
           <input type="radio" name="theme" value="C. 你衣柜里最隆重的衣服主题"> C. 你衣柜里最隆重的衣服主题
@@ -289,43 +311,45 @@
           <input type="radio" name="theme" value="D. 提前过万圣节主题"> D. 提前过万圣节主题
         </label>
         <label class="checkbox-row">
-          <input type="radio" name="theme" value="E. 神仙主题（中式神仙、西式仙子、小精灵）"> E. 神仙主题（中式神仙、西式仙子、小精灵）
+          <input type="radio" name="theme" value="E. 神仙主题（中式神仙、西式仙子、小精灵）"> E. 神仙主题\n（中式神仙、西式仙子、小精灵）
         </label>
       </div>
-      <div class="tip-block">【务必认真穿搭！匹配主题！（尤其点名黄蔚）本次party将会评选"最佳着装奖"~获奖者将获得没什么用的惊喜小奖励一枚~】</div>
+      <div class="tip-block">【务必认真穿搭！匹配主题！\n（尤其点名黄蔚）\n本次party将会评选"最佳着装奖"~\n获奖者将获得没什么用的惊喜小奖励一枚~】</div>
     </div>
     <button class="btn-primary" onclick="nextPage()">确认，下一步 →</button>
   </section>
 
-  <!-- P5 吃喝玩乐选择页 -->
+  <!-- P5 吃喝玩乐选择页【增加滚动+彩色加粗】 -->
   <section class="page" id="page5">
     <div class="info-card">
-      <p>要吃啥喝啥必不亏待！请选择！！</p>
-      <div class="form-item">
-        <p style="margin:4px 0;text-align:left;">🍹喝的：</p>
-        <label class="checkbox-row"><input type="checkbox" name="drink" value="可乐汽水">可乐汽水</label>
-        <label class="checkbox-row"><input type="checkbox" name="drink" value="自调酒品">自调酒品</label>
-        <label class="checkbox-row"><input type="checkbox" name="drink" value="奶茶自选">奶茶自选</label>
-        <label class="checkbox-row"><input type="checkbox" name="drink" value="金丝菊花茶">金丝菊花茶</label>
-      </div>
-      <div class="form-item">
-        <p style="margin:4px 0;text-align:left;">🍕吃的：</p>
-        <label class="checkbox-row"><input type="checkbox" name="food" value="达美乐">达美乐</label>
-        <label class="checkbox-row"><input type="checkbox" name="food" value="麦麦">麦麦</label>
-        <label class="checkbox-row"><input type="checkbox" name="food" value="山姆自选">山姆自选</label>
-        <label class="checkbox-row"><input type="checkbox" name="food" value="外卖自选">外卖自选</label>
-      </div>
-      <div class="form-item">
-        <p style="margin:4px 0;text-align:left;">🍬零食：太多了想不到了，请输入</p>
-        <input type="text" id="snackInput" placeholder="在这里输入零食想法">
-      </div>
-      <div class="form-item">
-        <p style="margin:4px 0;text-align:left;">🎮玩的：</p>
-        <label class="checkbox-row"><input type="checkbox" name="game" value="大富翁">大富翁</label>
-        <label class="checkbox-row"><input type="checkbox" name="game" value="飞行棋">飞行棋</label>
-        <label class="checkbox-row"><input type="checkbox" name="game" value="uno">uno</label>
-        <p style="margin:4px 0;text-align:left;">请输入</p>
-        <input type="text" id="gameInput" placeholder="在这里输入其他游戏">
+      <div class="scroll-card-inner">
+        <p class="color-blue">要吃啥喝啥必不亏待！请选择！！</p>
+        <div class="form-item">
+          <p class="color-green">🍹喝的：</p>
+          <label class="checkbox-row"><input type="checkbox" name="drink" value="可乐汽水">可乐汽水</label>
+          <label class="checkbox-row"><input type="checkbox" name="drink" value="自调酒品">自调酒品</label>
+          <label class="checkbox-row"><input type="checkbox" name="drink" value="奶茶自选">奶茶自选</label>
+          <label class="checkbox-row"><input type="checkbox" name="drink" value="金丝菊花茶">金丝菊花茶</label>
+        </div>
+        <div class="form-item">
+          <p class="color-green">🍕吃的：</p>
+          <label class="checkbox-row"><input type="checkbox" name="food" value="达美乐">达美乐</label>
+          <label class="checkbox-row"><input type="checkbox" name="food" value="麦麦">麦麦</label>
+          <label class="checkbox-row"><input type="checkbox" name="food" value="山姆自选">山姆自选</label>
+          <label class="checkbox-row"><input type="checkbox" name="food" value="外卖自选">外卖自选</label>
+        </div>
+        <div class="form-item">
+          <p class="color-yellow">🍬零食：太多了想不到了，请输入</p>
+          <input type="text" id="snackInput" placeholder="在这里输入零食想法">
+        </div>
+        <div class="form-item">
+          <p class="color-yellow">🎮玩的：</p>
+          <label class="checkbox-row"><input type="checkbox" name="game" value="大富翁">大富翁</label>
+          <label class="checkbox-row"><input type="checkbox" name="game" value="飞行棋">飞行棋</label>
+          <label class="checkbox-row"><input type="checkbox" name="game" value="uno">uno</label>
+          <p>请输入</p>
+          <input type="text" id="gameInput" placeholder="在这里输入其他游戏">
+        </div>
       </div>
     </div>
     <button class="btn-primary" onclick="nextPage()">确认，下一步 →</button>
@@ -340,13 +364,13 @@
           <input type="radio" name="hotel" value="A. 入住小曲家（上限3人）"> A. 入住小曲家（上限3人）
         </label>
         <label class="checkbox-row">
-          <input type="radio" name="hotel" value="B. 入住小敏家，虽然小敏还没同意（限9栋611人士）"> B. 入住小敏家，虽然小敏还没同意（限9栋611人士）
+          <input type="radio" name="hotel" value="B. 入住小敏家，虽然小敏还没同意\n（限9栋611人士）"> B. 入住小敏家，虽然小敏还没同意（限9栋611人士）
         </label>
         <label class="checkbox-row">
           <input type="radio" name="hotel" value="C. 一日往返回家住（尊嘟吗？）"> C. 一日往返回家住（尊嘟吗？）
         </label>
         <label class="checkbox-row">
-          <input type="radio" name="hotel" value="D. 金色印象过夜（小曲报销！注意：这个要提前抢！）"> D. 金色印象过夜（小曲报销！注意：这个要提前抢！）
+          <input type="radio" name="hotel" value="D. 金色印象过夜\n（小曲报销！注意：这个要提前抢！）"> D. 金色印象过夜（小曲报销！注意：这个要提前抢！）
         </label>
       </div>
     </div>
