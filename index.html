@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>曲乐瑶的24大寿派对 🎂</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -13,22 +12,20 @@
 
     body {
       margin: 0;
-      font-family: "ZCOOL KuaiLe", "Fredoka", "PingFang SC", sans-serif;
+      font-family: "Microsoft YaHei", "微软雅黑", "PingFang SC", sans-serif;
       overflow: hidden;
     }
 
-    /* 更大、更稀疏、以绿蓝为主的波点背景 */
+    /* 稀疏、不重合、更简单的波点背景 */
     .polka-bg {
       background-color: #fffbe8;
       background-image:
-        radial-gradient(#57d9a3 24px 24px, transparent 26px),
-        radial-gradient(#4fb8ff 22px 22px, transparent 24px),
-        radial-gradient(#ff5c8a 20px 20px, transparent 22px),
-        radial-gradient(#ffd93d 21px 21px, transparent 23px),
-        radial-gradient(#9bd6ff 18px 18px, transparent 20px),
-        radial-gradient(#a7f3a6 20px 20px, transparent 22px);
-      background-size: 110px 110px, 130px 130px, 100px 100px, 120px 120px, 105px 105px, 115px 115px;
-      background-position: 0 0, 40px 30px, 20px 50px, 50px 20px, 30px 60px, 60px 40px;
+        radial-gradient(#4fb8ff 18px 18px, transparent 20px),
+        radial-gradient(#57d9a3 17px 17px, transparent 19px),
+        radial-gradient(#ffd93d 16px 16px, transparent 18px),
+        radial-gradient(#ff5c8a 15px 15px, transparent 17px);
+      background-size: 120px 120px, 140px 140px, 130px 130px, 150px 150px;
+      background-position: 0 0, 60px 40px, 30px 70px, 80px 20px;
     }
 
     /* 页面 */
@@ -67,7 +64,7 @@
       top: 22px;
       left: 18px;
       z-index: 60;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       color: #2f80ed;
       border-radius: 999px;
       padding: 10px 16px;
@@ -95,16 +92,16 @@
 
     .decor-emoji {
       position: absolute;
-      font-size: 30px;
+      font-size: 28px;
       animation: gentleFloat 4s ease-in-out infinite;
     }
 
     @keyframes gentleFloat {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(6deg); }
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
-    /* 首页扇形圆弧标题 */
+    /* 首页圆弧标题 */
     .arc-title-wrap {
       position: relative;
       width: min(340px, 90%);
@@ -121,63 +118,12 @@
       height: 100%;
     }
 
-    .arc-title span {
-      position: absolute;
-      font-size: 22px;
-      font-weight: 900;
-      color: #ff5c8a;
-      text-shadow:
-        2px 2px 0 #ffd93d,
-        4px 4px 0 #4fb8ff;
-      left: 50%;
-      top: 0;
-      transform-origin: center 65px;
-    }
-
     .home-subtitle {
-      font-size: 1.08rem;
+      font-size: 1.05rem;
       color: #2f80ed;
       font-weight: 700;
       margin-top: 10px;
       z-index: 10;
-    }
-
-    /* 拍立得相框 */
-    .polaroid {
-      position: absolute;
-      width: 96px;
-      background: #fff;
-      padding: 10px 10px 24px;
-      border-radius: 18px;
-      box-shadow: 0 14px 30px rgba(79, 184, 255, 0.35);
-      z-index: 5;
-      animation: polaroidSwing 4s ease-in-out infinite;
-    }
-
-    .polaroid img {
-      width: 100%;
-      height: 78px;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 2px solid #eaf6ff;
-    }
-
-    .polaroid .polaroid-caption {
-      margin-top: 8px;
-      font-size: 13px;
-      color: #ff5c8a;
-      font-weight: 800;
-      text-align: center;
-    }
-
-    .polaroid.tl { top: 18%; left: 4%; transform: rotate(-8deg); }
-    .polaroid.tr { top: 16%; right: 4%; transform: rotate(7deg); }
-    .polaroid.bl { bottom: 22%; left: 5%; transform: rotate(6deg); }
-    .polaroid.br { bottom: 20%; right: 5%; transform: rotate(-7deg); }
-
-    @keyframes polaroidSwing {
-      0%, 100% { transform: rotate(var(--r, -5deg)) translateY(0); }
-      50% { transform: rotate(var(--r2, 5deg)) translateY(-8px); }
     }
 
     /* 按钮 */
@@ -270,35 +216,16 @@
 
   <button class="back-btn hidden" id="backBtn">← 返回</button>
 
-  <!-- 装饰层 -->
   <div class="decor-layer" id="decorLayer"></div>
 
   <!-- P1 首页 -->
   <section class="page active" id="page1">
-    <!-- 四张拍立得 -->
-    <div class="polaroid tl">
-      <img src="https://picsum.photos/id/1025/200/200" alt="photo1" />
-      <div class="polaroid-caption">HBD 24 🎂</div>
-    </div>
-    <div class="polaroid tr">
-      <img src="https://picsum.photos/id/1062/200/200" alt="photo2" />
-      <div class="polaroid-caption">Party Time 🥳</div>
-    </div>
-    <div class="polaroid bl">
-      <img src="https://picsum.photos/id/1074/200/200" alt="photo3" />
-      <div class="polaroid-caption">Cheers 🎈</div>
-    </div>
-    <div class="polaroid br">
-      <img src="https://picsum.photos/id/1084/200/200" alt="photo4" />
-      <div class="polaroid-caption">Happy Day 💛</div>
-    </div>
-
     <div class="arc-title-wrap">
       <svg class="arc-title" viewBox="0 0 340 130" preserveAspectRatio="none">
         <defs>
           <path id="arcPath" d="M 20 120 Q 170 10 320 120" fill="none" />
         </defs>
-        <text font-family="ZCOOL KuaiLe, sans-serif" font-size="24" font-weight="900" fill="#ff5c8a">
+        <text font-family="Microsoft YaHei, 微软雅黑, PingFang SC, sans-serif" font-size="24" font-weight="900" fill="#2f80ed">
           <textPath href="#arcPath" startOffset="50%" text-anchor="middle">
             欢迎来到曲乐瑶的24大寿~ 🎂🥳🎈
           </textPath>
@@ -360,7 +287,7 @@
       layer.innerHTML = "";
       const emojis = ["🎂", "🥳", "🎈", "⭐", "💛", "💙", "💚", "🎀", "🎁", "🍰"];
 
-      for (let i = 0; i < 12; i++) {
+      for (let i = 0; i < 10; i++) {
         const span = document.createElement("span");
         span.className = "decor-emoji";
         span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
