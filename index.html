@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>曲乐瑶的24大寿派对 🎂</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -12,25 +13,25 @@
 
     body {
       margin: 0;
-      font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      font-family: "ZCOOL KuaiLe", "Fredoka", "PingFang SC", sans-serif;
       overflow: hidden;
     }
 
-    /* 更大、更稀疏、更多彩的波点背景 */
+    /* 更大、更稀疏、以绿蓝为主的波点背景 */
     .polka-bg {
-      background-color: #fff7e0;
+      background-color: #fffbe8;
       background-image:
-        radial-gradient(#ff6fa5 22px 22px, transparent 24px),
-        radial-gradient(#ffd93d 20px 20px, transparent 22px),
-        radial-gradient(#6fd3ff 21px 21px, transparent 23px),
-        radial-gradient(#c792ff 20px 20px, transparent 22px),
-        radial-gradient(#8be26a 19px 19px, transparent 21px),
-        radial-gradient(#ff9a3c 20px 20px, transparent 22px);
-      background-size: 80px 80px, 95px 95px, 70px 70px, 90px 90px, 75px 75px, 85px 85px;
-      background-position: 0 0, 30px 20px, 10px 40px, 45px 10px, 20px 45px, 35px 25px;
+        radial-gradient(#57d9a3 24px 24px, transparent 26px),
+        radial-gradient(#4fb8ff 22px 22px, transparent 24px),
+        radial-gradient(#ff5c8a 20px 20px, transparent 22px),
+        radial-gradient(#ffd93d 21px 21px, transparent 23px),
+        radial-gradient(#9bd6ff 18px 18px, transparent 20px),
+        radial-gradient(#a7f3a6 20px 20px, transparent 22px);
+      background-size: 110px 110px, 130px 130px, 100px 100px, 120px 120px, 105px 105px, 115px 115px;
+      background-position: 0 0, 40px 30px, 20px 50px, 50px 20px, 30px 60px, 60px 40px;
     }
 
-    /* 页面容器 */
+    /* 页面 */
     .page {
       display: none;
       flex-direction: column;
@@ -39,7 +40,7 @@
       text-align: center;
       width: 100%;
       min-height: 100vh;
-      padding: 80px 24px 40px;
+      padding: 90px 20px 50px;
       animation: fadeIn 0.45s ease-out;
       position: relative;
       z-index: 1;
@@ -65,14 +66,14 @@
       position: absolute;
       top: 22px;
       left: 18px;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.85);
-      color: #ff4fa3;
+      z-index: 60;
+      background: rgba(255, 255, 255, 0.9);
+      color: #2f80ed;
       border-radius: 999px;
       padding: 10px 16px;
       font-weight: 800;
       font-size: 15px;
-      box-shadow: 0 6px 18px rgba(255, 105, 180, 0.25);
+      box-shadow: 0 6px 18px rgba(79, 184, 255, 0.3);
       border: none;
       cursor: pointer;
     }
@@ -81,48 +82,8 @@
       display: none;
     }
 
-    /* 首页标题 */
-    .home-title {
-      font-size: clamp(2rem, 7vw, 2.6rem);
-      font-weight: 900;
-      color: #ff2d7a;
-      text-shadow:
-        3px 3px 0 #ffd93d,
-        6px 6px 0 #6fd3ff;
-      letter-spacing: 1px;
-      z-index: 10;
-    }
-
-    .home-subtitle {
-      margin-top: 14px;
-      font-size: 1.05rem;
-      color: #7b2cbf;
-      font-weight: 700;
-      z-index: 10;
-    }
-
-    /* 按钮 */
-    .btn-primary {
-      margin-top: 40px;
-      width: min(320px, 86%);
-      background: linear-gradient(135deg, #ff5fa8, #ffb347, #ffd93d);
-      color: white;
-      border: none;
-      padding: 16px 22px;
-      border-radius: 999px;
-      font-size: 1.15rem;
-      font-weight: 800;
-      box-shadow: 0 10px 24px rgba(255, 90, 160, 0.35);
-      cursor: pointer;
-      z-index: 10;
-    }
-
-    .btn-primary:active {
-      transform: scale(0.96);
-    }
-
-    /* 漂浮图片容器 */
-    .floating-photos {
+    /* 装饰层 */
+    .decor-layer {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -132,101 +93,171 @@
       overflow: hidden;
     }
 
-    .float-photo {
+    .decor-emoji {
       position: absolute;
-      width: 72px;
-      height: 72px;
-      border-radius: 24px;
-      border: 4px solid white;
-      box-shadow: 0 10px 24px rgba(255, 105, 180, 0.35);
+      font-size: 30px;
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(6deg); }
+    }
+
+    /* 首页扇形圆弧标题 */
+    .arc-title-wrap {
+      position: relative;
+      width: min(340px, 90%);
+      height: 130px;
+      margin: 10px auto 20px;
+    }
+
+    .arc-title {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+    }
+
+    .arc-title span {
+      position: absolute;
+      font-size: 22px;
+      font-weight: 900;
+      color: #ff5c8a;
+      text-shadow:
+        2px 2px 0 #ffd93d,
+        4px 4px 0 #4fb8ff;
+      left: 50%;
+      top: 0;
+      transform-origin: center 65px;
+    }
+
+    .home-subtitle {
+      font-size: 1.08rem;
+      color: #2f80ed;
+      font-weight: 700;
+      margin-top: 10px;
+      z-index: 10;
+    }
+
+    /* 拍立得相框 */
+    .polaroid {
+      position: absolute;
+      width: 96px;
+      background: #fff;
+      padding: 10px 10px 24px;
+      border-radius: 18px;
+      box-shadow: 0 14px 30px rgba(79, 184, 255, 0.35);
+      z-index: 5;
+      animation: polaroidSwing 4s ease-in-out infinite;
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 78px;
       object-fit: cover;
-      animation: floatAround linear infinite;
+      border-radius: 10px;
+      border: 2px solid #eaf6ff;
     }
 
-    @keyframes floatAround {
-      0% {
-        transform: translate(0, 0) rotate(var(--r, 0deg));
-      }
-      25% {
-        transform: translate(var(--dx1, 20px), var(--dy1, -25px)) rotate(var(--r1, 6deg));
-      }
-      50% {
-        transform: translate(var(--dx2, -18px), var(--dy2, 18px)) rotate(var(--r2, -5deg));
-      }
-      75% {
-        transform: translate(var(--dx3, 22px), var(--dy3, 22px)) rotate(var(--r3, 4deg));
-      }
-      100% {
-        transform: translate(0, 0) rotate(var(--r, 0deg));
-      }
+    .polaroid .polaroid-caption {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #ff5c8a;
+      font-weight: 800;
+      text-align: center;
     }
 
-    /* 装饰 emoji */
-    .emoji-deco {
-      position: absolute;
-      font-size: 28px;
-      z-index: 3;
-      animation: gentleMove 4s ease-in-out infinite;
-      pointer-events: none;
+    .polaroid.tl { top: 18%; left: 4%; transform: rotate(-8deg); }
+    .polaroid.tr { top: 16%; right: 4%; transform: rotate(7deg); }
+    .polaroid.bl { bottom: 22%; left: 5%; transform: rotate(6deg); }
+    .polaroid.br { bottom: 20%; right: 5%; transform: rotate(-7deg); }
+
+    @keyframes polaroidSwing {
+      0%, 100% { transform: rotate(var(--r, -5deg)) translateY(0); }
+      50% { transform: rotate(var(--r2, 5deg)) translateY(-8px); }
     }
 
-    @keyframes gentleMove {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    /* 按钮 */
+    .btn-primary {
+      margin-top: 30px;
+      width: min(320px, 86%);
+      background: linear-gradient(135deg, #57d9a3, #4fb8ff, #ff5c8a);
+      color: white;
+      border: none;
+      padding: 16px 22px;
+      border-radius: 999px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      box-shadow: 0 12px 26px rgba(79, 184, 255, 0.35);
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .btn-primary:active {
+      transform: scale(0.96);
     }
 
     /* 信息卡片 */
     .info-card {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       border-radius: 30px;
-      padding: 28px 24px;
-      width: min(340px, 86%);
-      box-shadow: 0 12px 30px rgba(123, 44, 191, 0.25);
+      padding: 28px 22px;
+      width: min(350px, 88%);
+      box-shadow: 0 14px 30px rgba(47, 128, 237, 0.25);
       text-align: center;
       z-index: 10;
+      border: 3px solid #bde4ff;
     }
 
     .info-card h2 {
-      font-size: 1.7rem;
-      color: #7b2cbf;
+      font-size: 1.6rem;
+      color: #2f80ed;
       font-weight: 900;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .info-card p {
-      font-size: 1.1rem;
+      font-size: 1.04rem;
       color: #444;
       margin: 10px 0;
-      font-weight: 600;
+      font-weight: 700;
+      line-height: 1.8;
     }
 
-    /* 选择按钮区 */
+    /* 选择按钮 */
     .choice-buttons {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      width: min(320px, 86%);
+      gap: 14px;
+      width: min(330px, 86%);
       margin-top: 10px;
       z-index: 10;
     }
 
     .choice-btn {
       border: none;
-      border-radius: 999px;
-      padding: 16px 18px;
-      font-size: 1.1rem;
+      border-radius: 24px;
+      padding: 14px 18px;
+      font-size: 1.05rem;
       font-weight: 800;
       color: white;
       cursor: pointer;
-      box-shadow: 0 10px 24px rgba(255, 105, 180, 0.3);
+      box-shadow: 0 10px 24px rgba(79, 184, 255, 0.3);
     }
 
-    .choice-btn.yes {
-      background: linear-gradient(135deg, #4ade80, #38bdf8);
+    .choice-btn.green-blue {
+      background: linear-gradient(135deg, #57d9a3, #4fb8ff);
     }
 
-    .choice-btn.no {
-      background: linear-gradient(135deg, #a78bfa, #f472b6);
+    .choice-btn.pink-yellow {
+      background: linear-gradient(135deg, #ff5c8a, #ffd93d);
+    }
+
+    .choice-btn.blue-purple {
+      background: linear-gradient(135deg, #4fb8ff, #a78bfa);
     }
 
     .choice-btn:active {
@@ -237,30 +268,60 @@
 
 <body class="polka-bg">
 
-  <!-- 返回按钮 -->
   <button class="back-btn hidden" id="backBtn">← 返回</button>
 
-  <!-- 漂浮图片层 -->
-  <div class="floating-photos" id="floatingPhotos"></div>
+  <!-- 装饰层 -->
+  <div class="decor-layer" id="decorLayer"></div>
 
-  <!-- 首页 -->
+  <!-- P1 首页 -->
   <section class="page active" id="page1">
-    <h1 class="home-title">🎂 欢迎来到曲乐瑶的24大寿party 🥳</h1>
-    <p class="home-subtitle">期待和你一起，把这一天变成甜甜的彩色回忆 ✨</p>
+    <!-- 四张拍立得 -->
+    <div class="polaroid tl">
+      <img src="https://picsum.photos/id/1025/200/200" alt="photo1" />
+      <div class="polaroid-caption">HBD 24 🎂</div>
+    </div>
+    <div class="polaroid tr">
+      <img src="https://picsum.photos/id/1062/200/200" alt="photo2" />
+      <div class="polaroid-caption">Party Time 🥳</div>
+    </div>
+    <div class="polaroid bl">
+      <img src="https://picsum.photos/id/1074/200/200" alt="photo3" />
+      <div class="polaroid-caption">Cheers 🎈</div>
+    </div>
+    <div class="polaroid br">
+      <img src="https://picsum.photos/id/1084/200/200" alt="photo4" />
+      <div class="polaroid-caption">Happy Day 💛</div>
+    </div>
+
+    <div class="arc-title-wrap">
+      <svg class="arc-title" viewBox="0 0 340 130" preserveAspectRatio="none">
+        <defs>
+          <path id="arcPath" d="M 20 120 Q 170 10 320 120" fill="none" />
+        </defs>
+        <text font-family="ZCOOL KuaiLe, sans-serif" font-size="24" font-weight="900" fill="#ff5c8a">
+          <textPath href="#arcPath" startOffset="50%" text-anchor="middle">
+            欢迎来到曲乐瑶的24大寿~ 🎂🥳🎈
+          </textPath>
+        </text>
+      </svg>
+    </div>
+
+    <p class="home-subtitle">可爱生日派对邀请函 · 等你一起玩</p>
 
     <button class="btn-primary" onclick="nextPage()">
       确认，继续查看 →
     </button>
   </section>
 
-  <!-- 时间地点页 -->
+  <!-- P2 聚会时间地点 -->
   <section class="page" id="page2">
     <div class="info-card">
-      <h2>📍 聚会信息</h2>
-      <p>📅 日期：2026年11月11日</p>
-      <p>⏰ 时间：下午14:00 开始</p>
-      <p>🏠 地点：XX市XX区XX路XX号</p>
-      <p style="margin-top:14px;color:#ff4fa3;">等你一起吃蛋糕、拍照、玩游戏！</p>
+      <h2>🎂 聚会信息</h2>
+      <p>诚邀您参加我的24大寿party！</p>
+      <p>party地点：深圳市南山区崇文花园13栋2518</p>
+      <p>（深大丽湖地铁站c口步行5分钟）</p>
+      <p>party时间：2026年10月17日 12:00</p>
+      <p style="color:#ff5c8a;margin-top:12px;">邀您一起吃蛋糕、聊天、玩游戏！</p>
     </div>
 
     <button class="btn-primary" onclick="nextPage()">
@@ -268,16 +329,23 @@
     </button>
   </section>
 
-  <!-- 是否参加页 -->
+  <!-- P3 是否参加 -->
   <section class="page" id="page3">
-    <div class="info-card" style="margin-bottom:12px;">
-      <h2>🎉 你可以来吗？</h2>
+    <div class="info-card">
+      <h2>🎉 你会来吗？</h2>
       <p>请选择你的出席状态</p>
     </div>
 
     <div class="choice-buttons">
-      <button class="choice-btn yes" onclick="selectJoin()">✅ 我会参加！</button>
-      <button class="choice-btn no" onclick="selectNoJoin()">❌ 很遗憾无法到场</button>
+      <button class="choice-btn green-blue" onclick="selectJoin()">
+        ✅ 【！必须到场！】
+      </button>
+      <button class="choice-btn pink-yellow" onclick="selectMaybe()">
+        ？ 【我再考虑下嘛】
+      </button>
+      <button class="choice-btn blue-purple" onclick="selectNoJoin()">
+        ❌ 【555很可惜已经有安排了~】
+      </button>
     </div>
   </section>
 
@@ -286,64 +354,29 @@
     let currentPage = 1;
     const backBtn = document.getElementById("backBtn");
 
-    // 首页漂浮图片生成
-    function initFloatingPhotos() {
-      const container = document.getElementById("floatingPhotos");
-      container.innerHTML = "";
+    // 装饰 emoji 随机生成
+    function initDecorations() {
+      const layer = document.getElementById("decorLayer");
+      layer.innerHTML = "";
+      const emojis = ["🎂", "🥳", "🎈", "⭐", "💛", "💙", "💚", "🎀", "🎁", "🍰"];
 
-      const imgCount = 4;
-      const imgUrls = [
-        "https://picsum.photos/id/1025/200/200",
-        "https://picsum.photos/id/1062/200/200",
-        "https://picsum.photos/id/1074/200/200",
-        "https://picsum.photos/id/1084/200/200"
-      ];
-
-      for (let i = 0; i < imgCount; i++) {
-        const img = document.createElement("img");
-        img.src = imgUrls[i];
-        img.className = "float-photo";
-        img.alt = "photo";
-
-        // 随机初始位置，避开中间文字区域
-        const left = Math.random() * 70 + 5 + "%";
-        const top = Math.random() * 60 + 15 + "%";
-        img.style.left = left;
-        img.style.top = top;
-
-        // 随机漂浮参数
-        const dx1 = (Math.random() * 40 - 20);
-        const dy1 = (Math.random() * 40 - 20);
-        const dx2 = (Math.random() * 40 - 20);
-        const dy2 = (Math.random() * 40 - 20);
-        const dx3 = (Math.random() * 40 - 20);
-        const dy3 = (Math.random() * 40 - 20);
-        const duration = 10 + Math.random() * 8;
-        const delay = Math.random() * 4;
-
-        img.style.setProperty("--dx1", dx1 + "px");
-        img.style.setProperty("--dy1", dy1 + "px");
-        img.style.setProperty("--dx2", dx2 + "px");
-        img.style.setProperty("--dy2", dy2 + "px");
-        img.style.setProperty("--dx3", dx3 + "px");
-        img.style.setProperty("--dy3", dy3 + "px");
-        img.style.animationDuration = duration + "s";
-        img.style.animationDelay = delay + "s";
-
-        container.appendChild(img);
+      for (let i = 0; i < 12; i++) {
+        const span = document.createElement("span");
+        span.className = "decor-emoji";
+        span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        span.style.left = Math.random() * 95 + "%";
+        span.style.top = Math.random() * 95 + "%";
+        span.style.fontSize = (22 + Math.random() * 14) + "px";
+        span.style.animationDuration = (3.5 + Math.random() * 2) + "s";
+        span.style.animationDelay = Math.random() * 3 + "s";
+        layer.appendChild(span);
       }
     }
 
-    // 页面渲染
     function renderPage() {
       document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
       document.getElementById("page" + currentPage).classList.add("active");
-
-      if (currentPage === 1) {
-        backBtn.classList.add("hidden");
-      } else {
-        backBtn.classList.remove("hidden");
-      }
+      backBtn.classList.toggle("hidden", currentPage === 1);
     }
 
     function nextPage() {
@@ -361,15 +394,19 @@
     }
 
     function selectJoin() {
-      alert("🎉 太棒啦！正式版会进入主题选择页面。");
+      alert("🎉 太棒啦！正式版会进入主题选择页。");
+    }
+
+    function selectMaybe() {
+      alert("🤔 好的，那你可以先围观后面的选择题。");
     }
 
     function selectNoJoin() {
-      alert("🥺 收到你的回复，期待下次见面！正式版会直接跳转到结束感谢页。");
+      alert("😢 555没办法下次再聚吧~~ 正式版会跳转到结束页A。");
     }
 
     backBtn.addEventListener("click", prevPage);
-    initFloatingPhotos();
+    initDecorations();
   </script>
 </body>
 </html>
