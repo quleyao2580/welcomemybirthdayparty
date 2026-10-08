@@ -16,7 +16,7 @@
       overflow: hidden;
     }
 
-    /* 稀疏、不重合、更简单的波点背景 */
+    /* 稀疏无重叠波点背景，绿蓝主色，红黄点缀 */
     .polka-bg {
       background-color: #fffbe8;
       background-image:
@@ -28,7 +28,7 @@
       background-position: 0 0, 60px 40px, 30px 70px, 80px 20px;
     }
 
-    /* 页面 */
+    /* 页面基础样式 */
     .page {
       display: none;
       flex-direction: column;
@@ -42,20 +42,12 @@
       position: relative;
       z-index: 1;
     }
-
     .page.active {
       display: flex;
     }
-
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateX(24px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      from { opacity: 0; transform: translateX(24px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     /* 返回按钮 */
@@ -74,12 +66,11 @@
       border: none;
       cursor: pointer;
     }
-
     .back-btn.hidden {
       display: none;
     }
 
-    /* 装饰层 */
+    /* 漂浮emoji装饰 */
     .decor-layer {
       position: absolute;
       inset: 0;
@@ -89,26 +80,23 @@
       z-index: 2;
       overflow: hidden;
     }
-
     .decor-emoji {
       position: absolute;
       font-size: 28px;
       animation: gentleFloat 4s ease-in-out infinite;
     }
-
     @keyframes gentleFloat {
-      0%, 100% { transform: translateY(0); }
+      0%,100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
 
-    /* 首页圆弧标题 */
+    /* 首页弧形标题 */
     .arc-title-wrap {
       position: relative;
       width: min(340px, 90%);
       height: 130px;
       margin: 10px auto 20px;
     }
-
     .arc-title {
       position: absolute;
       left: 50%;
@@ -117,16 +105,11 @@
       width: 100%;
       height: 100%;
     }
-
-    .home-subtitle {
-      font-size: 1.05rem;
-      color: #2f80ed;
-      font-weight: 700;
-      margin-top: 10px;
-      z-index: 10;
+    .arc-title text {
+      text-shadow: 1px 1px 3px #fff, 2px 2px 4px rgba(0,0,0,0.25);
     }
 
-    /* 按钮 */
+    /* 主按钮 */
     .btn-primary {
       margin-top: 30px;
       width: min(320px, 86%);
@@ -141,12 +124,11 @@
       cursor: pointer;
       z-index: 10;
     }
-
     .btn-primary:active {
       transform: scale(0.96);
     }
 
-    /* 信息卡片 */
+    /* 卡片容器 */
     .info-card {
       background: rgba(255, 255, 255, 0.94);
       border-radius: 30px;
@@ -157,23 +139,28 @@
       z-index: 10;
       border: 3px solid #bde4ff;
     }
-
     .info-card h2 {
       font-size: 1.6rem;
       color: #2f80ed;
       font-weight: 900;
       margin-bottom: 16px;
     }
-
     .info-card p {
       font-size: 1.04rem;
       color: #444;
       margin: 10px 0;
-      font-weight: 700;
+      font-weight: 500;
       line-height: 1.8;
     }
+    .tip-block {
+      background: #e8f7ff;
+      padding:12px;
+      border-radius:16px;
+      margin:14px 0;
+      color:#2068aa;
+    }
 
-    /* 选择按钮 */
+    /* 选择按钮组 */
     .choice-buttons {
       display: flex;
       flex-direction: column;
@@ -182,7 +169,6 @@
       margin-top: 10px;
       z-index: 10;
     }
-
     .choice-btn {
       border: none;
       border-radius: 24px;
@@ -193,29 +179,59 @@
       cursor: pointer;
       box-shadow: 0 10px 24px rgba(79, 184, 255, 0.3);
     }
-
     .choice-btn.green-blue {
       background: linear-gradient(135deg, #57d9a3, #4fb8ff);
     }
-
     .choice-btn.pink-yellow {
       background: linear-gradient(135deg, #ff5c8a, #ffd93d);
     }
-
     .choice-btn.blue-purple {
       background: linear-gradient(135deg, #4fb8ff, #a78bfa);
     }
-
     .choice-btn:active {
       transform: scale(0.96);
+    }
+
+    /* 表单输入样式 */
+    .form-item{
+      text-align:left;
+      margin:12px 0;
+    }
+    input[type="text"],textarea{
+      width:100%;
+      border:2px solid #bde4ff;
+      border-radius:14px;
+      padding:10px;
+      margin-top:6px;
+      font-family:inherit;
+    }
+    textarea{
+      min-height:80px;
+      resize:vertical;
+    }
+    .checkbox-row{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      margin:8px 0;
+    }
+
+    /* 汇总信息展示框 */
+    .result-box{
+      background:#fff;
+      border-radius:20px;
+      padding:16px;
+      text-align:left;
+      width:100%;
+      margin:16px 0;
+      max-height:300px;
+      overflow-y:auto;
     }
   </style>
 </head>
 
 <body class="polka-bg">
-
   <button class="back-btn hidden" id="backBtn">← 返回</button>
-
   <div class="decor-layer" id="decorLayer"></div>
 
   <!-- P1 首页 -->
@@ -232,61 +248,157 @@
         </text>
       </svg>
     </div>
-
-    <p class="home-subtitle">可爱生日派对邀请函 · 等你一起玩</p>
-
-    <button class="btn-primary" onclick="nextPage()">
-      确认，继续查看 →
-    </button>
+    <button class="btn-primary" onclick="nextPage()">确认，继续查看 →</button>
   </section>
 
   <!-- P2 聚会时间地点 -->
   <section class="page" id="page2">
     <div class="info-card">
-      <h2>🎂 聚会信息</h2>
       <p>诚邀您参加我的24大寿party！</p>
       <p>party地点：深圳市南山区崇文花园13栋2518</p>
       <p>（深大丽湖地铁站c口步行5分钟）</p>
-      <p>party时间：2026年10月17日 12:00</p>
-      <p style="color:#ff5c8a;margin-top:12px;">邀您一起吃蛋糕、聊天、玩游戏！</p>
+      <p>party时间：2026年10月17日邀您共度12点~~</p>
     </div>
-
-    <button class="btn-primary" onclick="nextPage()">
-      确认，下一步 →
-    </button>
+    <button class="btn-primary" onclick="nextPage()">确认，下一步 →</button>
   </section>
 
-  <!-- P3 是否参加 -->
+  <!-- P3 是否参加选择页 -->
   <section class="page" id="page3">
-    <div class="info-card">
-      <h2>🎉 你会来吗？</h2>
-      <p>请选择你的出席状态</p>
-    </div>
-
     <div class="choice-buttons">
-      <button class="choice-btn green-blue" onclick="selectJoin()">
-        ✅ 【！必须到场！】
-      </button>
-      <button class="choice-btn pink-yellow" onclick="selectMaybe()">
-        ？ 【我再考虑下嘛】
-      </button>
-      <button class="choice-btn blue-purple" onclick="selectNoJoin()">
-        ❌ 【555很可惜已经有安排了~】
-      </button>
+      <button class="choice-btn green-blue" onclick="selectJoinType('come')">✅ 【！必须到场！】</button>
+      <button class="choice-btn blue-purple" onclick="selectJoinType('maybe')">？ 【我再考虑下嘛（可以围观后续的选择题）】</button>
+      <button class="choice-btn pink-yellow" onclick="selectJoinType('no')">❌ 【555很可惜已经有安排了~】</button>
+    </div>
+  </section>
+
+  <!-- P4 Party主题选择页 -->
+  <section class="page" id="page4">
+    <div class="info-card">
+      <p>dresscode主题大PK！请选择！</p>
+      <div class="form-item">
+        <label class="checkbox-row">
+          <input type="radio" name="theme" value="A. cos任何你喜欢的角色主题"> A. cos任何你喜欢的角色主题
+        </label>
+        <label class="checkbox-row">
+          <input type="radio" name="theme" value="B. 模仿曲乐瑶主题（必须有参考文献出处）"> B. 模仿曲乐瑶主题（必须有参考文献出处）
+        </label>
+        <label class="checkbox-row">
+          <input type="radio" name="theme" value="C. 你衣柜里最隆重的衣服主题"> C. 你衣柜里最隆重的衣服主题
+        </label>
+        <label class="checkbox-row">
+          <input type="radio" name="theme" value="D. 提前过万圣节主题"> D. 提前过万圣节主题
+        </label>
+        <label class="checkbox-row">
+          <input type="radio" name="theme" value="E. 神仙主题（中式神仙、西式仙子、小精灵）"> E. 神仙主题（中式神仙、西式仙子、小精灵）
+        </label>
+      </div>
+      <div class="tip-block">【务必认真穿搭！匹配主题！（尤其点名黄蔚）本次party将会评选"最佳着装奖"~获奖者将获得没什么用的惊喜小奖励一枚~】</div>
+    </div>
+    <button class="btn-primary" onclick="nextPage()">确认，下一步 →</button>
+  </section>
+
+  <!-- P5 吃喝玩乐选择页 -->
+  <section class="page" id="page5">
+    <div class="info-card">
+      <p>要吃啥喝啥必不亏待！请选择！！</p>
+      <div class="form-item">
+        <p style="margin:4px 0;text-align:left;">🍹喝的：</p>
+        <label class="checkbox-row"><input type="checkbox" name="drink" value="可乐汽水">可乐汽水</label>
+        <label class="checkbox-row"><input type="checkbox" name="drink" value="自调酒品">自调酒品</label>
+        <label class="checkbox-row"><input type="checkbox" name="drink" value="奶茶自选">奶茶自选</label>
+        <label class="checkbox-row"><input type="checkbox" name="drink" value="金丝菊花茶">金丝菊花茶</label>
+      </div>
+      <div class="form-item">
+        <p style="margin:4px 0;text-align:left;">🍕吃的：</p>
+        <label class="checkbox-row"><input type="checkbox" name="food" value="达美乐">达美乐</label>
+        <label class="checkbox-row"><input type="checkbox" name="food" value="麦麦">麦麦</label>
+        <label class="checkbox-row"><input type="checkbox" name="food" value="山姆自选">山姆自选</label>
+        <label class="checkbox-row"><input type="checkbox" name="food" value="外卖自选">外卖自选</label>
+      </div>
+      <div class="form-item">
+        <p style="margin:4px 0;text-align:left;">🍬零食：太多了想不到了，请输入</p>
+        <input type="text" id="snackInput" placeholder="在这里输入零食想法">
+      </div>
+      <div class="form-item">
+        <p style="margin:4px 0;text-align:left;">🎮玩的：</p>
+        <label class="checkbox-row"><input type="checkbox" name="game" value="大富翁">大富翁</label>
+        <label class="checkbox-row"><input type="checkbox" name="game" value="飞行棋">飞行棋</label>
+        <label class="checkbox-row"><input type="checkbox" name="game" value="uno">uno</label>
+        <p style="margin:4px 0;text-align:left;">请输入</p>
+        <input type="text" id="gameInput" placeholder="在这里输入其他游戏">
+      </div>
+    </div>
+    <button class="btn-primary" onclick="nextPage()">确认，下一步 →</button>
+  </section>
+
+  <!-- P6 住宿方式选择页 -->
+  <section class="page" id="page6">
+    <div class="info-card">
+      <p>十分关心各位的住宿安全！必须住好了</p>
+      <div class="form-item">
+        <label class="checkbox-row">
+          <input type="radio" name="hotel" value="A. 入住小曲家（上限3人）"> A. 入住小曲家（上限3人）
+        </label>
+        <label class="checkbox-row">
+          <input type="radio" name="hotel" value="B. 入住小敏家，虽然小敏还没同意（限9栋611人士）"> B. 入住小敏家，虽然小敏还没同意（限9栋611人士）
+        </label>
+        <label class="checkbox-row">
+          <input type="radio" name="hotel" value="C. 一日往返回家住（尊嘟吗？）"> C. 一日往返回家住（尊嘟吗？）
+        </label>
+        <label class="checkbox-row">
+          <input type="radio" name="hotel" value="D. 金色印象过夜（小曲报销！注意：这个要提前抢！）"> D. 金色印象过夜（小曲报销！注意：这个要提前抢！）
+        </label>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="nextPage()">确认，下一步 →</button>
+  </section>
+
+  <!-- P7 意见建议留言页 -->
+  <section class="page" id="page7">
+    <div class="info-card">
+      <p>还有啥要提的意见请讲~</p>
+      <textarea id="commentInput" placeholder="输入你的意见建议"></textarea>
+    </div>
+    <button class="btn-primary" onclick="gotoSummary()">确认，查看汇总并提交 →</button>
+  </section>
+
+  <!-- 汇总提交页（结束B前置） -->
+  <section class="page" id="summaryPage">
+    <div class="info-card">
+      <h2>填写信息汇总</h2>
+      <div class="result-box" id="resultText"></div>
+      <button class="btn-primary" onclick="sendMail()">📩 提交邮件</button>
+      <button class="btn-primary" style="background:linear-gradient(135deg,#ffd93d,#ff9a3c)" onclick="copyInfo()">📋 复制信息</button>
+    </div>
+  </section>
+
+  <!-- 结束页A：无法到场 -->
+  <section class="page" id="endPageA">
+    <div class="info-card">
+      <h2>555没办法下次再聚吧~~</h2>
+      <div style="font-size:60px;animation:spin 3s linear infinite;">🙇</div>
+      <style>@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}</style>
+    </div>
+  </section>
+
+  <!-- 结束页B：确认参加 -->
+  <section class="page" id="endPageB">
+    <div class="info-card">
+      <h2>感谢参加！恭候各位莅临寒舍一起happy~</h2>
+      <div style="font-size:60px;animation:spin 3s linear infinite;">🥳</div>
     </div>
   </section>
 
   <script>
-    const totalPage = 3;
     let currentPage = 1;
     const backBtn = document.getElementById("backBtn");
+    let joinType = "";
 
-    // 装饰 emoji 随机生成
+    // 装饰emoji
     function initDecorations() {
       const layer = document.getElementById("decorLayer");
       layer.innerHTML = "";
       const emojis = ["🎂", "🥳", "🎈", "⭐", "💛", "💙", "💚", "🎀", "🎁", "🍰"];
-
       for (let i = 0; i < 10; i++) {
         const span = document.createElement("span");
         span.className = "decor-emoji";
@@ -300,40 +412,104 @@
       }
     }
 
-    function renderPage() {
-      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-      document.getElementById("page" + currentPage).classList.add("active");
+    function renderPage(){
+      document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+      if(currentPage<=7){
+        document.getElementById("page"+currentPage).classList.add("active");
+      }
       backBtn.classList.toggle("hidden", currentPage === 1);
     }
 
-    function nextPage() {
-      if (currentPage < totalPage) {
+    function nextPage(){
+      if(currentPage<7){
         currentPage++;
         renderPage();
       }
     }
-
-    function prevPage() {
-      if (currentPage > 1) {
+    function prevPage(){
+      if(currentPage>1){
         currentPage--;
         renderPage();
       }
     }
 
-    function selectJoin() {
-      alert("🎉 太棒啦！正式版会进入主题选择页。");
+    // 选择到场类型
+    function selectJoinType(type){
+      joinType = type;
+      if(type === "no"){
+        document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+        document.getElementById("endPageA").classList.add("active");
+        backBtn.classList.add("hidden");
+      }else{
+        currentPage = 4;
+        renderPage();
+      }
     }
 
-    function selectMaybe() {
-      alert("🤔 好的，那你可以先围观后面的选择题。");
+    // 获取多选框的值
+    function getCheckboxValue(name){
+      const arr = [];
+      document.querySelectorAll(`input[name="${name}"]:checked`).forEach(item=>arr.push(item.value));
+      return arr.join("、");
+    }
+    function getRadio(name){
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : "未选择";
     }
 
-    function selectNoJoin() {
-      alert("😢 555没办法下次再聚吧~~ 正式版会跳转到结束页A。");
+    // 汇总所有表单
+    function buildResult(){
+      const comeText = joinType==="come"?"✅ 必须到场":joinType==="maybe"?"🤔 我再考虑下":"❌ 无法到场";
+      const theme = getRadio("theme");
+      const drink = getCheckboxValue("drink");
+      const food = getCheckboxValue("food");
+      const snack = document.getElementById("snackInput").value || "无";
+      const gameCheck = getCheckboxValue("game");
+      const gameOther = document.getElementById("gameInput").value || "无";
+      const hotel = getRadio("hotel");
+      const comment = document.getElementById("commentInput").value || "无";
+
+      const text =
+`====曲乐瑶生日派对回执====
+出席状态：${comeText}
+穿搭主题：${theme}
+饮品选择：${drink}
+食物选择：${food}
+零食想法：${snack}
+桌游选择：${gameCheck}，其他游戏：${gameOther}
+住宿选择：${hotel}
+意见留言：${comment}`;
+      return text;
     }
 
-    backBtn.addEventListener("click", prevPage);
+    function gotoSummary(){
+      const result = buildResult();
+      document.getElementById("resultText").innerText = result;
+      document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+      document.getElementById("summaryPage").classList.add("active");
+      backBtn.classList.add("hidden");
+    }
+
+    // 唤起邮件（修改下面邮箱为你的邮箱）
+    function sendMail(){
+      const content = buildResult();
+      const mailto = `mailto:这里替换成你的邮箱@xxx.com?subject=生日派对回执&body=${encodeURIComponent(content)}`;
+      window.location.href = mailto;
+    }
+
+    // 复制文本
+    async function copyInfo(){
+      try{
+        await navigator.clipboard.writeText(buildResult());
+        alert("信息复制成功！你可以直接微信发给曲乐瑶");
+      }catch(e){
+        alert("复制失败，请手动复制：\n"+buildResult());
+      }
+    }
+
+    backBtn.addEventListener("click",prevPage);
     initDecorations();
+    renderPage();
   </script>
 </body>
 </html>
